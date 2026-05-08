@@ -564,26 +564,34 @@ a {
   position: relative;
 
   background: var(--card);
-  border-radius: 16px;
+  border-radius: 18px;
 
   padding: 25px;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 
   border: 1px solid var(--card-border);
 
   backdrop-filter: blur(10px);
 
-  box-shadow: 
-    0 10px 30px rgba(0,0,0,0.5),
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.6),
     inset 0 0 20px rgba(255,255,255,0.02);
 
-  transition: 0.35s ease;
-
   overflow: hidden;
+
+  transition: 0.35s ease;
 }
 
+/* ✅ hover */
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
 
-/* ✅ glow line */
+  box-shadow:
+    0 25px 60px rgba(0,0,0,0.8),
+    0 0 40px rgba(32,223,175,0.2);
+}
+
+/* ✅ glow effect */
 .card::before {
   content: "";
   position: absolute;
@@ -592,7 +600,7 @@ a {
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(32,223,175,0.1),
+    rgba(32,223,175,0.08),
     transparent
   );
 
@@ -600,73 +608,32 @@ a {
   transition: 0.4s;
 }
 
-
-/* ✅ hover */
-.card:hover {
-  transform: translateY(-12px) scale(1.02);
-
-  box-shadow: 
-    0 20px 50px rgba(0,0,0,0.7),
-    0 0 40px rgba(32,223,175,0.2);
-}
-
 .card:hover::before {
   opacity: 1;
 }
-.skills-grid {
-  display: grid 30px;  display: grid;
-}
 
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-.skill-card {
-  position: relative;
-
-  background border-radius: 16px;  background: var(--card);
-
-  padding: 30px 20px;
-  text-align: center;
-
-  border: 1px solid var(--card-border);
-
-  min-height: 170px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  backdrop-filter: blur(12px);
-
-  box-shadow: var(--shadow);
-
-  transition: 0.35s ease;
-
-  overflow: hidden;
-}
-
-
-/* ✅ hover glow */
-.skill-card:hover {
-  transform: translateY(-15px) scale(1.04);
-
-  box-shadow:
-    0 25px 50px rgba(0,0,0,0.7),
-    0 0 30px var(--accent-glow);
-}
-
-
-/* ✅ inner text */
-.skill-card h4 {
+/* ✅ text */
+.card h4 {
   font-size: 20px;
-  margin-bottom: 10px;
-  font-weight: 600;
+  margin-bottom: 5px;
 }
 
-.skill-card p {
+.card p {
   color: var(--muted);
-  font-size: 14px;
+  margin-bottom: 5px;
 }
-.skill-card:hover {
-  transform: perspective(1000px) translateY(-15px) rotateX(4deg) scale(1.05);
+
+/* ✅ time badge */
+.time {
+  display: inline-block;
+  margin: 8px 0 15px;
+  padding: 4px 10px;
+
+  border-radius: 8px;
+  background: rgba(32,223,175,0.1);
+
+  font-size: 12px;
+  color: var(--accent);
 }
 
 /* ABOUT */
