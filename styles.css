@@ -1,21 +1,13 @@
-:root {:root */
+:root {
   --bg: #060f18;
   --bg-soft: #0b1c2a;
-
-  /* ✅ Cards */
   --card: rgba(18, 35, 51, 0.7);
   --card-border: rgba(255,255,255,0.05);
-
-  /* ✅ Text */
   --text: #eaf6ff;
   --muted: #8aa4bd;
-
-  /* ✅ Accent (Glow Color) */
   --accent: #20dfaf;
   --accent-2: #00c6ff;
   --accent-glow: rgba(32, 223, 175, 0.45);
-
-  /* ✅ Shadows */
   --shadow: 0 10px 40px rgba(0,0,0,0.6);
   --shadow-glow: 0 0 30px rgba(32,223,175,0.25);
 }
@@ -337,11 +329,9 @@ nav a:hover::before {
 
 
 /* HERO */
-/* ===== HERO (ULTRA PREMIUM) ===== *//* ===== HERO (ULTRA PREMIUM) 80px;
-
+.hero {
   padding: 140px 0;
   min-height: calc(100vh - 80px);
-
   text-align: left;
 }
 
@@ -478,6 +468,14 @@ nav a:hover::before {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+
+  gap: 80px;
+  padding: 140px 0;
+  min-height: calc(100vh - 80px);
+
+  text-align: left;
+}
+
 
 
 /* BUTTON */
@@ -644,22 +642,22 @@ a {
 }
 
 /* PROJECTS */
-.projects-grid {.projects grid;
+.projects-grid {
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-
   gap: 35px;
-  align-items: start;
-
-  margin-top: 30px;
 }
 
 
-/* PROJECT CARD */
-.project-card {.project-card;
+/* ===== PROJECT CARD CLEAN ===== */
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   background: var(--card);
   border-radius: 16px;
-
   overflow: hidden;
 
   border: 1px solid var(--card-border);
@@ -670,198 +668,68 @@ a {
     0 15px 30px rgba(0,0,0,0.6),
     inset 0 0 20px rgba(255,255,255,0.02);
 
-  transition: 0.4s ease;
-}
-       .project-card {
- flex-direction: column;  display: flex;
-  justify-content: space-between;
+  transition: 0.3s ease;
 
-  height: 100%;   /* ✅ أهم سطر */
+  height: 100%;
 }
 
 .project-card:hover {
-  transform: perspective(1000px) translateY(-15px) rotateX(3deg) scale(1.03);
+  transform: translateY(-10px);
 
   box-shadow:
-    0 30px 60px rgba(0,0,0,0.8),
-    0 0 40px var(--accent-glow);
+    0 25px 50px rgba(0,0,0,0.8),
+    0 0 30px var(--accent-glow);
 }
-  .project-thumb {
-  width: 100%;
-  height: 200px; /* ✅ ثابت */
 
+/* IMAGE */
+.project-thumb {
+  width: 100%;
+  height: 200px;
   object-fit: cover;
+  transition: 0.3s ease;
 }
-.project-card:hover .project-thumb {.project-card:hover .project(1.08);
+
+.project-card:hover .project-thumb {
+  transform: scale(1.08);
 }
+
+/* BODY */
 .project-body {
   padding: 20px;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-
-  height: 100%;
+  gap: 10px;
 }
-
-                                    .project-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(32,223,175,0.1),
-    transparent
-  );
-
-  opacity: 0;
-  transition: 0.4s;
-}
-
-.project-card:hover::before {
-  opacity: 1;
-}
-
-/* IMAGE */
-.project-thumb { 100%;
-  height: 230px;
-
-  object-fit: cover;
-
-  transition: all 0.5s ease;
-}
-
-.project-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.project-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.6),
-    transparent
-  );
-
-  opacity: 0;
-  transition: 0.4s;
-}
-                                    .project-card:hover .project-thumb {.project-card:hover transform: scale(1.1);
-}
-
-.project-card:hover::after {
-  opacity: 1;
-}
-
-
 
 /* TEXT */
-.project-body {
-  padding: : relative;  padding: 20px;
-  z-index: 2;
-}
 .project-desc {
-  margin: 10px 0 15px;
-
   color: var(--muted);
-  line-height: 1.6;
 
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* ✅ أقصى سطرين */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 /* BULLETS */
-.bullets {.bul 15px;
-
-  display: -webkit-box;
-  -webkit-line-clamp: 4; /* ✅ يحدد عدد السطور */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+.bullets {
+  margin-bottom: 15px;
 }
-
-
 
 .bullets li {
-  position: relative;
-
-  padding-left: 25px;
-  margin: 12px 0;
-
-  line-height: 1.6;
-
-  color: var(--muted);
-
-  transition: 0.3s ease;
+  margin: 8px 0;
 }
-                                    .bullets li::before {
-  content: "";
-  position: absolute;
-
-  left: 0;
-  top: 8px;
-
-  width: 8px;
-  height: 8px;
-
-  border-radius: 50%;
-
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-
-  box-shadow: 0 0 10px var(--accent-glow);
-}
-                                    .bullets li:hover {
-  color: white;
-  transform: translateX(5px);
-}
-
 
 /* TAGS */
-.tags { flex;
-  flex-wrap: wrap;
-
-  gap: 10px;
-  margin-top: 15px;
-}
 .tags {
-  margin-top: auto; /* 💣 يخليهم تحت دايمًا */
+  margin-top: auto;
 }
 
-
-.tags span { padding: 6px 12px;
-
-  border-radius: 20px;
-
-  font-size: 13px;
-
-  border: 1px solid var(--card-border);
-
-  color: var(--muted);
-
-  background: rgba(255,255,255,0.03);
-
-  transition: 0.3s ease;
-
-  cursor: pointer;
-}
-
-
-.tags span:hover {  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-
-  color: black;
-
-  transform: translateY(-3px) scale(1.08);
-
-  box-shadow: 
-    0 8px 20px rgba(32,223,175,0.4),
-    0 0 15px rgba(32,223,175,0.2);
+.tags span {
+  font-size: 12px;
+  margin-right: 5px;
+  color: var(--accent);
 }
 
 
@@ -870,12 +738,12 @@ a {
 /* ===== CONTACT CARD (PREMIUM) ===== */
 
 .contact-card {
-  text-align: center600px;  text-align: center;
+  text-align: center;
+  max-width: 600px;
   margin: 0 auto;
 
   background: var(--card);
   border-radius: 16px;
-
   padding: 40px;
 
   border: 1px solid var(--card-border);
@@ -891,22 +759,7 @@ a {
 
 
 
-  background: var(--card);
-  border-radius: 16px;
-
-  padding: 35px;
-
-  border: 1px solid var(--card-border);
-
-  backdrop-filter: blur(12px);
-
-  box-shadow:
-    0 15px 40px rgba(0,0,0,0.6),
-    0 0 30px rgba(32,223,175,0.1);
-
-  transition: 0.4s ease;
-}
-
+  
 
 /* ✅ hover effect */
 .contact-card:hover {
@@ -916,7 +769,9 @@ a {
     0 25px 60px rgba(0,0,0,0.8),
     0 0 40px rgba(32,223,175,0.3);
 }
-.links-row {: flex;
+.links-row {
+  display: flex;
+
   justify-content: center;
 
   gap: 20px;
@@ -925,7 +780,7 @@ a {
   flex-wrap: wrap;
 }
 .links-row .btn {
-  min-width: : center;  min-width: 120px;
+  min-width: 120px;
 }
 
 .contact-card p {
@@ -986,17 +841,7 @@ a {
 }
 
 /* ✅ ANIMATION */
-@keyframes fadeUp {
-  0% {
-    opacity: 0;
-    transform: translateY(40px) scale(0.96);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
+/* ===== ANIMATION ===== */
 
 .hidden {
   opacity: 0;
@@ -1004,53 +849,50 @@ a {
   transition: all 0.6s ease;
 }
 
-.show {1;
-  transform: translateY(0) scale(1);
+.show {
+  opacity: 1;
+  transform: translateY(0);
 }
-.section.show > * {  animation: fadeUp 0.7s ease forwards;
+
+/* FIXED */
+.section.show > * {
+  animation: fadeUp 0.7s ease forwards;
 }
+
 
 .section.show > *:nth-child(1) { animation-delay: 0.05s; }
 .section.show > *:nth-child(2) { animation-delay: 0.1s; }
 .section.show > *:nth-child(3) { animation-delay: 0.15s; }
 .section.show > *:nth-child(4) { animation-delay: 0.2s; }
 .section.show > *:nth-child(5) { animation-delay: 0.25s; }
-.project-card {.project-card;
-               .project-card {
-  padding-bottom: 10px;
-}
-  transform: translateY(40px);
-}
 
 .project-card.show {
   opacity: 1;
   transform: translateY(0);
   transition: all 0.6s ease;
 }
+
+/* HERO animation */
 .hero {
   animation: fadeUp 0.8s ease;
 }
-                                    html {html: smooth;
-}
-
 
 /* ✅ HERO STYLE */
 /* ===== HERO FINAL PROFESSIONAL ===== */
 
 .hero {
   display: flex;
-  flex-direction: row; /* ✅ أهم حاجة */
-
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 
   gap: 80px;
-
   padding: 140px 0;
   min-height: calc(100vh - 80px);
 
   text-align: left;
 }
+
 
 .hero-left {
   flex: 1;
@@ -1058,15 +900,16 @@ a {
   justify-content: center;
 }
 
-.hero-right {.hero-right2;
-
+.hero-right {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
 .hero h1 {
- -2));  font-size: 70px;
+  font-size: 70px;
+
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -1079,9 +922,10 @@ a {
   transform: scale(1.05);
 }
 
-  font-weight: 700;
+
                                     
-.avatar {.avatar230px;
+.avatar {
+  width: 230px;
   height: 230px;
 
   border-radius: 50%;
@@ -1105,14 +949,14 @@ a {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-#bgCanvas {#bgCanvas;
+#bgCanvas {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: -1;
 }
-
 /* ✅ 👇 هنا تحطها */
 
 /* ===== RESPONSIVE ===== */
@@ -1131,4 +975,8 @@ a {
     justify-content: center;
   }
 
+}
+::selection {
+  background: var(--accent);
+  color: black;
 }
