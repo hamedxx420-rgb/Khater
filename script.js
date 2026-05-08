@@ -1,32 +1,17 @@
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll(".site-header nav a");
-const yearSpan = document.getElementById("year");
-const themeToggle = document.getElementById("themeToggle");
-
+/* ===== YEAR AUTO ===== *//* ===== YEAR AUTO document.getElementById("year");
 if (yearSpan) {
   yearSpan.textContent = new Date().getFullYear();
 }
 
-function setTheme(isDark) {
-  document.body.classList.toggle("dark", isDark);
 
-  if (themeToggle) {
-    themeToggle.textContent = isDark ? "🌙" : "☀️";
-  }
-}
-
-setTheme(true);
-
-if (themeToggle) {
-  themeToggle.addEventListener("click", () => {
-    const dark = !document.body.classList.contains("dark");
-    setTheme(dark);
-  });
-}
+/* ===== ACTIVE NAV LINK ===== */
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".site-header nav a");
 
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
 
       const id = entry.target.getAttribute("id");
 
@@ -35,9 +20,9 @@ const observer = new IntersectionObserver(
       );
 
       if (link) {
-  navLinks.forEach((a) => a.classList.remove("active"));
-  link.classList.add("active");
-}
+        navLinks.forEach((l) => l.classList.remove("active"));
+        link.classList.add("active");
+      }
     });
   },
   {
@@ -46,35 +31,29 @@ const observer = new IntersectionObserver(
   }
 );
 
-sections.forEach((section) => {
-  observer.observe(section);
-});
-// ✅ Animation on Scroll (حل المشكلة)
+sections.forEach((section) => observer.observe(section));
 
-const elements = document.querySelectorAll("section.hidden");
 
-const observer2 = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("show");
-    }
-  });
-}, {
-  threshold: 0.1
-});
+/* ===== SCROLL ANIMATION ===== */
+const elements = document.querySelectorAll(".hidden");
+
+const observer2 = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  },
+  {
+    threshold: 0.15,
+  }
+);
 
 elements.forEach((el) => observer2.observe(el));
 
-window.onload = () => {
-  document.querySelectorAll("section").forEach(el => el.classList.add("show"));
-};
 
-// ✅ حل نهائي لإظهار كل حاجة
-window.onload = () => {
-  document.querySelectorAll(".hidden").forEach(el => {
-    el.classList.remove("hidden");
-  });
-};
+/* ===== PARTICLES BACKGROUND ===== */
 const canvas = document.getElementById("bgCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -83,12 +62,12 @@ canvas.height = window.innerHeight;
 
 let nodes = [];
 
-for (let i = 0; i < 70; i++) {
+for (let i = 0; i < 80; i++) {
   nodes.push({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     dx: (Math.random() - 0.5) * 1,
-    dy: (Math.random() - 0.5) * 1
+    dy: (Math.random() - 0.5) * 1,
   });
 }
 
@@ -99,7 +78,7 @@ function draw() {
     node.x += node.dx;
     node.y += node.dy;
 
-    ctx.fillStyle = "#20dfaf";
+    ctx.fillStyle = "rgba(32,223,175,0.9)";
     ctx.beginPath();
     ctx.arc(node.x, node.y, 2, 0, Math.PI * 2);
     ctx.fill();
@@ -110,7 +89,7 @@ function draw() {
       let distance = Math.sqrt(dx * dx + dy * dy);
 
       if (distance < 120) {
-        ctx.strokeStyle = "rgba(32,223,175,0.2)";
+        ctx.strokeStyle = "rgba(32,223,175,0.25)";
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(node.x, node.y);
@@ -131,4 +110,11 @@ draw();
 window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+});
+
+
+/* ===== MOUSE LIGHT EFFECT (🔥) ===== */
+document.addEventListener("mousemove", (e) => {
+  document.body.style.setProperty("--x", e.clientX + "px");
+  document.body.style.setProperty("--y", e.clientY + "px");
 });
